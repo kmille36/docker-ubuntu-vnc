@@ -44,7 +44,7 @@ RUN wget "https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-$
 	&& rm /noVNC.tar.gz
 
 COPY ./config/helpers.rc /root/.config/xfce4/
-COPY ./config/chromium-WebBrowser.desktop /root/.local/share/xfce4/helpers/
+COPY ./config/chrome-WebBrowser.desktop /root/.local/share/xfce4/helpers/
 COPY ./start.sh /
 
 WORKDIR /root
