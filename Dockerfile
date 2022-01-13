@@ -29,7 +29,7 @@ RUN wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_21.0
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ; sudo dpkg --install google-chrome-stable_current_amd64.deb ; sudo apt install --assume-yes --fix-broken ; rm -rf google-chrome-stable_current_amd64.deb
 
 # Install noVNC
-RUN git clone https://github.com/novnc/noVNC.git ; wget https://github.com/kmille36/thuonghai/raw/master/katacoda/index.html ; mv index.html noVNC/index.html 
+RUN git clone https://github.com/novnc/noVNC.git ; wget https://github.com/kmille36/docker-ubuntu-vnc/raw/master/index.html ; mv index.html noVNC/index.html 
 
 COPY ./config/helpers.rc /root/.config/xfce4/
 COPY ./config/chrome-WebBrowser.desktop /root/.local/share/xfce4/helpers/
