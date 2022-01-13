@@ -1,0 +1,13 @@
+<html><head><script>
+    var i = 0;
+    var id = setInterval(function () {
+        if (i > 0) {
+            document.open();
+            document.write("Your noVNC Environment Is Being Loading. Estimating time:: " + i-- + " seconds");
+            document.close();
+        } else {
+            clearInterval(id);
+            window.location.href = "./vnc.html?autoconnect=true&password=123456";
+        }
+    }, 1000)
+</script></head></html>
