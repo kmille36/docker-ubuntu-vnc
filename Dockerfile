@@ -15,7 +15,7 @@ ENV tigervnc_version=1.10.1
 # Install apps
 RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -yq xfce4 xfce4-goodies \
-	vim wget git gdebi curl htop sudo software-properties-common python  \
+	vim wget git gdebi curl htop sudo software-properties-common python tightvncserver \
 	python3-numpy python3-setuptools \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& add-apt-repository ppa:dawidd0811/neofetch -y && apt install neofetch -y
@@ -28,20 +28,8 @@ RUN wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_21.0
 
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ; sudo dpkg --install google-chrome-stable_current_amd64.deb ; sudo apt install --assume-yes --fix-broken ; rm -rf google-chrome-stable_current_amd64.deb
 
-# Install TigerVNC and noVNC
-RUN wget "https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-${tigervnc_version}.x86_64.tar.gz" -O /tigervnc.tar.gz \
-	&& tar -xvf /tigervnc.tar.gz -C / \
-	&& rm /tigervnc.tar.gz \
-	&& wget https://github.com/novnc/websockify/archive/v${websockify_version}.tar.gz -O /websockify.tar.gz \
-	&& tar -xvf /websockify.tar.gz -C / \
-	&& cd /websockify-${websockify_version} \
-	&& python3 setup.py install \
-	&& cd / && rm -r /websockify.tar.gz /websockify-${websockify_version} \
-	&& wget https://github.com/novnc/noVNC/archive/v${noVNC_version}.tar.gz -O /noVNC.tar.gz \
-	&& tar -xvf /noVNC.tar.gz -C / \
-	&& cd /noVNC-${noVNC_version} \
-	&& ln -s vnc.html index.html \
-	&& rm /noVNC.tar.gz
+# Install noVNC
+RUN git clone https://github.com/novnc/noVNC.git ; wget https://github.com/kmille36/thuonghai/raw/master/katacoda/index.html ; mv index.html noVNC/index.html 
 
 COPY ./config/helpers.rc /root/.config/xfce4/
 COPY ./config/chrome-WebBrowser.desktop /root/.local/share/xfce4/helpers/
