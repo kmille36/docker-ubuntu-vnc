@@ -26,7 +26,7 @@ RUN wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/crossover_21.0
 
 # Install Google Chrome
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ; sudo dpkg --install google-chrome-stable_current_amd64.deb ; sudo apt install --assume-yes --fix-broken
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ; sudo dpkg --install google-chrome-stable_current_amd64.deb ; sudo apt install --assume-yes --fix-broken ; rm -rf google-chrome-stable_current_amd64.deb
 
 # Install TigerVNC and noVNC
 RUN wget "https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-${tigervnc_version}.x86_64.tar.gz" -O /tigervnc.tar.gz \
